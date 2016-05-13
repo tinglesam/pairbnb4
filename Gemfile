@@ -25,13 +25,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 gem "clearance"
-gem "figaro"
+gem 'braintree', '~> 2.33.1'
+gem 'figaro', '~> 0.7.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'gon', '~> 5.1.2'
 # gem 'fog-aws'
 # gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 

@@ -24,19 +24,24 @@ class ReservationsController < ApplicationController
                
     check_in_date = split_date[0]
     check_out_date = split_date[1]
-    byebug
    	check_in =Date.strptime(check_in_date, "%m/%d/%Y")
     check_out = Date.strptime(check_out_date, "%m/%d/%Y")
 
 
-	@reservation = current_user.reservations.new(reservation_params)
-	@reservation.checkin= check_in
-	@reservation.checkout = check_out
-	if @reservation.save
-      flash[:success] = "Thank you for your reservation"
-      redirect_to @reservation
-    else
-      render template: "reservation/new"
+    
+  	@reservation = current_user.reservations.new(reservation_params)
+    @listing = Listing.find(@reservation.listing_id)
+    num_days = check_out - check_in
+    totalcost =  @listing.price * num_days
+  	@reservation.checkin= check_in
+  	@reservation.checkout = check_out
+    @reservation.totalcost = totalcost
+    
+  	if @reservation.save
+        flash[:success] = "Thank you for your reservation"
+        redirect_to reservations_path
+      else
+        render template: "reservation/new"
     end
   end
 

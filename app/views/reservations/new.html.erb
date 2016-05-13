@@ -13,20 +13,20 @@
 
 <h1> <b>Make A Reservation </b></h1>
 
-<h2> <%= @listing.name%> </h2>
-<p>Availible Dates </p>
+<h2> <%= @listing.name%> - $<%=@listing.price %>/night</h2>
+   
+
 
 <%= form_for(@reservation) do |form| %>
-
-
+	<br>
+	<p> <b>How many people will be staying? </b> </p>
 	<div class="form-group" >
 	<label class="sr-only" for="exampleInputEmail2">Number of People</label>
 	<%= form.number_field :people ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"How many people will be staying?" %>
 	</div>
-
+<br>
 	<div class="form-group">
 	<label > Dates of Stay </label>
-	<br>
 	
 	</div>
 		<input type="text" name="datefilter" value="" />
@@ -52,9 +52,10 @@
 		<br>
 
 	<%= form.hidden_field :listing_id, :value => @listing.id %>
-       
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+    
 	<div class="submit-field">
-	<%= form.submit "Create Reservation" %>
+	<%= form.submit "Add to cart" %>
 	</div>
 <% end %>
 

@@ -4,8 +4,9 @@
 		<div class="row">
 
 			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+		
 
-			<button class="btn btn-outlined btn-theme btn-lg"><%=link_to "Add New Listing", new_listing_path %></button>
+			<button class="btn btn-outlined btn-theme btn-lg"><%=link_to "Add New Listing", signed_in? ? new_listing_path : sign_in_path %></button>
 			<br>
 			<br>
 						
@@ -22,10 +23,12 @@
 							<span class="day">$<%= listing.price if listing.price? %> </span>
 					
 						</time>
-						<img alt="first picture"  <%= image_tag listing.images.url %> 
+						<% if listing.images %>
 						
+							<img alt="first picture"  <%= image_tag listing.images[0].url %> 
+						<%end%>
 						<div class="info">
-							<h2 class="title"><%= link_to listing.name, listing_path(listing.id) %></h2>
+							<h2 class="title"><%= link_to listing.name, signed_in? ? listing_path(listing.id) : sign_in_path  %></h2>
 							<p class="desc"><%= listing.address %></p>
 							<ul>
 								<li style="width:33%;">Reviews <span class="glyphicon glyphicon-ok"></span></li>
@@ -33,20 +36,20 @@
 								<li style="width:33%;">Availible <%=listing.people %><span class="fa fa-male"></span></li>
 							</ul>
 						</div>
-						<% if current_user.id==(listing.user_id) %>
-				
-						<div class="social">
-							<ul>
-								<li class="google-plus"  style="width:33%;"><a class="btn">  <%= link_to "Edit", edit_listing_path(listing.id) %>   </li>
-								<li class="google-plus"  style="width:34%;"><a  class="btn"> 
-    							<%= link_to "delete", listing, method: :delete, data: { confirm: "You sure?"} %>
-
-
-                                    </li>
-							
-								<li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
-							</ul>
-						</div>
+						
+						<%if current_user %>
+							<% if current_user.id==(listing.user_id) %>
+									<div class="social">
+										<ul>
+											<li class="google-plus"  style="width:33%;"><a class="btntwo">  <%= link_to "Edit", edit_listing_path(listing.id) %>   </li>
+											<li class="google-plus"  style="width:34%;"><a  class="btntwo"> 
+			    							<%= link_to "Delete", listing, method: :delete, data: { confirm: "You sure?"} %> </li>
+											<li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus">
+												
+											</span></a></li>
+										</ul>
+									</div>
+							<%end%>
 						<%end%>
 					</li>
 					<%end%>

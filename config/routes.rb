@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'transactions/new'
+
   get 'reservations/new'
 
   get 'reservations/create'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  #CLEARANCE ROUTES
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
 
   get "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
@@ -28,14 +31,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'listings#index'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   resources :users, only: [:show, :edit, :update, :destroy]
 
   resources :listings
   resources :reservations
   resources :application
-
+  resources :transactions, only: [:new, :create]
 
 
   post "/reservations/:listing_id" => "reservations#create" 

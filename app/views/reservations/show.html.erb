@@ -7,23 +7,22 @@
                     	</div>
                         <div class="artst-prfle pull-right col-md-12 col-xs-12 col-sm-12">
                         	<div class="art-title">
-                            <%byebug%>
-                            	<%= @reservation.listing.name%>   
-
+                            	<%= @reservation.listing.name%>
+                                <br>   
+                                Total Cost: $<%=@reservation.totalcost%>
+                                <br>
+                                <medium> Dates </medium>
                                 <span class="artst-sub"> <span class="byname"><%= @reservation.checkin%></span> 
                                  <span class="artst-sub"> <span class="byname"><%= @reservation.checkout
                                  %></span>
-                                 <span class="artst-sub"> <span class="byname"><%= @reservation.people%></span>
+                                  <span class="artst-sub"> <span class="byname">Number of People Staying: <%= @reservation.people%></span>
                                
                             </div>
  
                             
                          
                         </div>
-                        <div class="bot-links">
-                        	<a href="#">Sit amet</a>
-                        	<a href="#">Amet</a>
-                        </div>
+                      
                     </div>
 
                  </div>

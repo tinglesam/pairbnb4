@@ -37,12 +37,21 @@
 	}
 	.event-list > li > time > span {
 		display: none;
+		justify-content: center; 
+		align-items: center;
 	}
 	.event-list > li > time > .day {
 		display: block;
 		font-size: 56pt;
 		margins: auto;
 		font-weight: 100;
+		line-height: 1;
+	}
+	.event-list > li > time > .daytwo {
+		display: block;
+		font-size:30pt;
+		margins: auto;
+		vertical-align: middle;
 		line-height: 1;
 	}
 	.event-list > li time > .month {
@@ -194,7 +203,7 @@
 			padding: 10px 0px 9px;
 		}
 	}
-.btn {
+.btntwo {
     border-radius: 0;
     border: 0;
     border-bottom: 4px solid #CCCCCC;

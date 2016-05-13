@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
 
 
-
 	private
 
 	def the_user_params

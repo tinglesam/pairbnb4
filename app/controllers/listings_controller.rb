@@ -33,11 +33,11 @@ class ListingsController < ApplicationController
   	end
 
   def update
-  	byebug
+  	
     @listing = Listing.find(params[:id])
 
     if @listing.update_attributes(listing_params)
-    byebug
+    
       redirect_to @listing
 
     else
@@ -55,7 +55,7 @@ class ListingsController < ApplicationController
 	private
 
 	def listing_params
-		params.require(:listing).permit(:user_id, :name, :price, :address, :people, :amenities, :start_date, :end_date, {images:[]})
+		params.require(:listing).permit(:user_id, :name, :price, :address, :people, :amenities, :start_date, :end_date, {images: []})
 	end
 
 
