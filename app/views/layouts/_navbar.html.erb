@@ -1,0 +1,104 @@
+<nav class="navbar navbar-findcond navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="navbar-brand" > <%= link_to "PareBNB", "/"%> </div>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Listings <span class="badge">0</span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><i class="fa fa-fw fa-tag"></i> <span class="badge">Music</span> sayfası <span class="badge">Video</span> sayfasında etiketlendi</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Music</span> sayfasında iletiniz beğenildi</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Video</span> sayfasında iletiniz beğenildi</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Game</span> sayfasında iletiniz beğenildi</a></li>
+						</ul>
+					</li> -->
+					
+					<li class="active"> <%=link_to "Listings", listings_path %> <span class="sr-only">(current)</span></li>
+					
+					<% if signed_in? %>
+						<% greeting = "Hi, " << current_user.first_name << "!" %>
+						<li class="active"> <%=link_to greeting, user_path(current_user.id) %><span class="sr-only">(current)</span></li>
+
+							<li class="active"> <%=link_to t(".sign_out"), sign_out_path %> <span class="sr-only">(current)</span></li>
+							
+      <% else %>
+						<li class="dropdown">
+
+
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							
+	    		
+	      						Sign in 
+	    			
+
+							<span class="caret"></span></a>
+
+
+
+
+
+							<ul id="login-dp" class="dropdown-menu" role="menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											Login via
+											<div class="social-buttons">
+
+											 <%= link_to "Facebook", "/auth/facebook", class:"btn btn-fb" %>
+											</div>
+									
+											or
+											<div class="form" id="login-nav">
+
+												<%= form_for :session, url: session_path do |form| %>
+
+
+
+												
+
+												<div class="form-group" >
+												<label class="sr-only" for="exampleInputEmail2">Email address</label>
+												<%= form.text_field :email ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"Email Address" %>
+												</div>
+									
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputPassword2"> Password</label>
+													<%= form.password_field :password, class:"form-control", id:"exampleInputPassword2", placeholder:"Password"%>
+												</div>
+
+												<div class="other-links">
+												
+													<%= link_to t(".forgot_password"), new_password_path %>
+												</div>
+												<div class="submit-field">
+													<%= form.submit %>
+												</div>
+											</div>
+										</div>
+										<div class="bottom text-center">
+											New? 
+											<%= link_to t(".sign_up"), sign_up_path %>
+											
+
+										</div>
+									</div>
+									<% end %>
+								</li>
+							</ul>
+						<% end -%>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-right search-form" role="search">
+					<input type="text" class="form-control" placeholder="Search" />
+				</form>
+			</div>
+		</div>
+	</nav>

@@ -1,0 +1,30 @@
+<%= form_for(@reservation) do |form| %>
+  
+
+
+<div class="form-group" >
+<label class="sr-only" for="exampleInputEmail2">Number of People</label>
+<%= form.number_field :people ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"How many people will be staying?" %>
+</div>
+
+<div class="form-group">
+<label > Check In</label>
+<br>
+<%= form.date_select :checkin, class:"form-control", id:"exampleInputPassword2", placeholder:"Check In Date"%>
+</div>
+
+<div class="form-group" >
+<label > Check Out</label>
+<br>
+<%= form.date_select :checkout ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"Check Out Date" %>
+</div>
+
+
+<div class="submit-field">
+<%= form.submit "Create Reservation" %>
+</div>
+
+
+
+
+<% end %>

@@ -1,0 +1,66 @@
+
+<!-- Include Required Prerequisites -->
+<head>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+ 
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+</head>
+
+<h1> <b>Make A Reservation </b></h1>
+
+<h2> <%= @listing.name%> </h2>
+<p>Availible Dates </p>
+
+<%= form_for(@reservation) do |form| %>
+
+
+	<div class="form-group" >
+	<label class="sr-only" for="exampleInputEmail2">Number of People</label>
+	<%= form.number_field :people ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"How many people will be staying?" %>
+	</div>
+
+	<div class="form-group">
+	<label > Dates of Stay </label>
+	<br>
+	
+	</div>
+		<input type="text" name="datefilter" value="" />
+		 
+		<script type="text/javascript">
+		$(function() {
+
+		  $('input[name="datefilter"]').daterangepicker({
+		       "drops": "up"
+		  });
+
+		    $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      		$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+ 			 });
+
+			$('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+			  $(this).val('');
+			});
+
+		});
+		</script>
+		<br>
+		<br>
+
+	<%= form.hidden_field :listing_id, :value => @listing.id %>
+       
+	<div class="submit-field">
+	<%= form.submit "Create Reservation" %>
+	</div>
+<% end %>
+
+<!-- function(start, end {
+        	@reservation.checkin = start
+        	@reservation.checkout = end
+
+
+    		}); -->
