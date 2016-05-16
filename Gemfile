@@ -30,6 +30,8 @@ gem 'figaro', '~> 0.7.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'gon', '~> 5.1.2'
+gem 'sidekiq'
+gem 'activejob'
 # gem 'fog-aws'
 # gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 

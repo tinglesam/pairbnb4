@@ -42,12 +42,13 @@ class ReservationsController < ApplicationController
     
   	if @reservation.save
         flash[:success] = "Thank you for your reservation"
+         ReservationJob.perform_later(@reservation)
         redirect_to reservations_path
       else
         render template: "reservation/new"
     end
     
-    ReservationMailer.cart_confirmation(@reservation).deliver
+   
   end
 
   def update

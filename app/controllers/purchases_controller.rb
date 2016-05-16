@@ -29,7 +29,7 @@ class PurchasesController < ApplicationController
   @purchase.price = params[:purchase][:price]
   @purchase.save
 
-  ReservationMailer.booking_confirmation(@reservation).deliver
+  ReservationMailer.booking_confirmation(@reservation).deliver_later
 
 
 

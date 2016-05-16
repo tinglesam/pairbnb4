@@ -11,6 +11,7 @@ class ReservationMailer < ApplicationMailer
   def cart_confirmation(reservation)
   	@reservation = reservation
   	@user = User.find(reservation.user_id)
+    byebug
   	mail(:to => @user.email, :subject => "You added something to the cart!")
   end
 
