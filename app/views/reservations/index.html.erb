@@ -29,18 +29,25 @@
 						<%end%>
 						<div class="info">
 						
-							<h2 class="title"><%= link_to rez.listing.name, listing_path(rez.listing_id)  %></h2>
+							<h2 class="title"><%= link_to rez.listing.name, listing_path(rez.listing_id)  %> <%= rez.paid ? ("Paid in full!") : ("unpaid") %></h2>
 							<p class="desc"><%= rez.checkin %></p>
 							<p class="desc"><%= rez.checkout %></p>
+							
+							
 
 							<p class="desc">Reserved by <%= rez.user.first_name %></p>
 						</div>
 					</li>
 					<% @user_total = @user_total + rez.totalcost%>
+					
+					<% if !rez.paid  %>
+						<button class="btn btn-outlined btn-theme btn-lg"> <%=link_to "Pay Now: Total $"+ rez.totalcost.to_s , new_purchase_path(:rez_id => rez.id) %></button>
+					<%end%>
+					<br>
+					<br>
 				<%end%>
 			<%end%>
 			
-				<button class="btn btn-outlined btn-theme btn-lg"> <%=link_to "Pay Now: Total $"+ @user_total.to_s,new_transaction_path %></button>
 
 			</div>
 		</div>

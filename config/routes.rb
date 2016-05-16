@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'purchases/new'
+
   get 'transactions/new'
 
   get 'reservations/new'
@@ -38,7 +40,7 @@ Rails.application.routes.draw do
   resources :listings
   resources :reservations
   resources :application
-  resources :transactions, only: [:new, :create]
+  resources :purchases, only: [:new, :create]
 
 
   post "/reservations/:listing_id" => "reservations#create" 

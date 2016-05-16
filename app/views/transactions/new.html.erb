@@ -1,9 +1,54 @@
 <h1>Pay for your stuff</h1>
 <div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
-  <h2 class="mbs">New Transaction</h2>
-  <%= form_tag transactions_path do%>
-    <p>Please enter your payment details:</p>
-    <div id="dropin"></div>
-    <%=submit_tag "Pay #{current_user.cart_total_price}$", class: "button mt1" %>
-  <%end%>
+
+
+
+	<h1>That's all for your order:</h1>
+
+
+	<%= form_for(@purchase) do |f| %>
+
+	  <div class="field">
+	    <%= f.label :start_date %><br>
+	    <%= @reservation.checkin %><br>
+	  </div>
+	  <div class="field">
+	    <%= f.label :end_date %><br>
+	    <%= @reservation.checkout %><br>
+	  </div>
+	  <div class="field">
+	    <%= f.hidden_field :reservation_id, value: @reservation.id %><br>
+	  </div>
+
+      <div class="field">
+		<div id="dropin"></div>
+	  </div>
+
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+
+	<% end %>
+
+ <!--  <h2 class="mbs">New Transaction</h2>
+  <%= form_tag transactions_path #do%>
+ -->    <p>Please enter your payment details:</p>
+
+
+		<script type="text/javascript">
+		  function setupBT() {
+		    braintree.setup("<%= @client_token %>", 'dropin', {
+		      container: 'dropin'
+		    });
+		  }
+
+		  if (window.addEventListener)
+		    window.addEventListener("load", setupBT, false);
+		  else if (window.attachEvent)
+		    window.attachEvent("onload", setupBT);
+		  else window.onload = setupBT;
+
+		</script>
+
+    
 </div>

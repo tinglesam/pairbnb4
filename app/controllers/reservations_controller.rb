@@ -36,6 +36,7 @@ class ReservationsController < ApplicationController
   	@reservation.checkin= check_in
   	@reservation.checkout = check_out
     @reservation.totalcost = totalcost
+    @reservation.paid = false
     
   	if @reservation.save
         flash[:success] = "Thank you for your reservation"

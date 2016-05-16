@@ -1,7 +1,3 @@
-
-
-
-
 class User <  ActiveRecord::Base
   include Clearance::User
    has_many :authentications, :dependent => :destroy
@@ -32,14 +28,15 @@ class User <  ActiveRecord::Base
     true
   end
 
+ 
   def cart_total_price
     user_total = 0
     
     Reservation.where(user_id: self.id).each do  |rez|  
-      byebug
+      
      user_total+=rez.totalcost
     end
-    byebug
+    
     return user_total
   end
 
