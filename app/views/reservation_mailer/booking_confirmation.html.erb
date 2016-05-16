@@ -1,0 +1,10 @@
+<p><%= @user.first_name %> <%= @user.last_name %></p>
+
+
+<% @listing = Listing.find(@reservation.listing_id) %>
+
+<p>Thank you for your booking of <%=@listing.name%>!</p>
+
+<p>It cost <%=@purchase.price%>!</p>
+
+<p><%= link_to "If this was not you, please edit you password!", edit_user_path(@user, :host => "localhost:3000") %></p>
