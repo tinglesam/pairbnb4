@@ -1,7 +1,15 @@
 class ListingsController < ApplicationController
 
 	def index
-		@listing = Listing.all 
+		
+		if params[:search]
+			@listing = Listing.search params[:search], 
+			  fields: [{name: :word_start}, {address: :word_start}],
+			  operator: "or"
+
+		else
+			@listing = Listing.all 
+		end
 	end
 
 	def show 
@@ -18,7 +26,7 @@ class ListingsController < ApplicationController
 	def create
 		@listing = current_user.listings.new(listing_params)
 		
-		@listing.dates = (params[:listing][:start_date]..params[:listing][:end_date]).map(&:to_s)
+		#@listing.dates = (params[:listing][:start_date]..params[:listing][:end_date]).map(&:to_s)
 		if @listing.save
 	      flash[:success] = "Thank you for your listing"
 	      redirect_to @listing

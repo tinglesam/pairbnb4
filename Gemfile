@@ -30,12 +30,15 @@ gem 'figaro', '~> 0.7.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'gon', '~> 5.1.2'
+gem 'sidekiq'
+gem 'activejob'
 # gem 'fog-aws'
 # gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'searchkick'
 
 # source 'https://rails-assets.org' do
 #   gem 'rails-assets-tether', '>= 1.1.0'

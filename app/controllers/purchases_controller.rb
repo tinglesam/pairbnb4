@@ -14,7 +14,6 @@ class PurchasesController < ApplicationController
  def create
   @reservation = Reservation.find(params[:purchase][:reservation_id])
   nonce = params[:payment_method_nonce]
-  byebug
   render action: :new and return unless nonce
   result = Braintree::Transaction.sale(
     amount: params[:purchase][:price].to_s,
@@ -24,6 +23,17 @@ class PurchasesController < ApplicationController
   # reserve to save the transaction details into database
   @reservation.paid = true
   @reservation.save
+  @user = User.find(@reservation.user_id)
+
+  @purchase = Purchase.find_by(reservation_id: @reservation.id)
+  @purchase.price = params[:purchase][:price]
+  @purchase.save
+
+  ReservationMailer.booking_confirmation(@reservation).deliver_later
+
+
+
+
   redirect_to reservations_path
 
  end

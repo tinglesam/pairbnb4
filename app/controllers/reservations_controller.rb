@@ -24,6 +24,7 @@ class ReservationsController < ApplicationController
                
     check_in_date = split_date[0]
     check_out_date = split_date[1]
+
    	check_in =Date.strptime(check_in_date, "%m/%d/%Y")
     check_out = Date.strptime(check_out_date, "%m/%d/%Y")
 
@@ -35,15 +36,19 @@ class ReservationsController < ApplicationController
     totalcost =  @listing.price * num_days
   	@reservation.checkin= check_in
   	@reservation.checkout = check_out
+
     @reservation.totalcost = totalcost
     @reservation.paid = false
     
   	if @reservation.save
         flash[:success] = "Thank you for your reservation"
+         ReservationJob.perform_later(@reservation)
         redirect_to reservations_path
       else
         render template: "reservation/new"
     end
+    
+   
   end
 
   def update

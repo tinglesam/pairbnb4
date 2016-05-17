@@ -1,0 +1,8 @@
+<p><%= @user.first_name %> <%= @user.last_name %></p>
+
+<p>Thank you for placing an item in your cart!</p>
+<% @listing = Listing.find(@reservation.listing_id) %>
+<p>Now in your cart: <%=@listing.name%>!</p>
+
+
+<p><%= link_to "If this was not you, please edit you password!", edit_user_path(@user.id), :host => "localhost:3000") %></p>
